@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1341913259583464644}
   - component: {fileID: 1341913259583464651}
   - component: {fileID: 1407623754}
-  - component: {fileID: 4661169725112592171}
+  - component: {fileID: 664218261}
   m_Layer: 0
   m_Name: Gosma
   m_TagString: Enemy
@@ -148,7 +148,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -202,15 +202,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdc500e2f5d67941b54bedd77496aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeAtk: 0
   distance: 1
   checkRadius: 0.3
   playerMask:
     serializedVersion: 2
     m_Bits: 8
+  atkD: 0
+  atkE: 0
   groundCheck: {fileID: 1341913257853128477}
   Atk: {fileID: 5441450284786761908}
   atkRate: 1
---- !u!114 &4661169725112592171
+--- !u!114 &664218261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,10 +222,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341913259583464650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708ba691b22fd29499b9a325ba2ec20e, type: 3}
+  m_Script: {fileID: 11500000, guid: a7859ee720dec4446911b446a271910b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  rdbenemy: {fileID: 0}
 --- !u!1 &7620634879553588501
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +239,7 @@ GameObject:
   - component: {fileID: 7067090780410407016}
   m_Layer: 0
   m_Name: Atk
-  m_TagString: AtkEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,4 +296,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708ba691b22fd29499b9a325ba2ec20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerP: 0
+  timerE: 0
   damage: 1
+  impulsoP: 0
+  impulsoE: 0
+  inimigo: 0

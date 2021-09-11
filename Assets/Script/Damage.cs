@@ -22,13 +22,14 @@ public class Damage : MonoBehaviour
     }
     private void Update()
     {
-        if (impulsoP)
+        if (impulsoP || impulsoE)
         {
             timerP += Time.deltaTime;
         }
-        if (timerP > 1)
+        if (timerP > 2)
         {
             impulsoP = false;
+            impulsoE = false;
             timerP = 0;
         }
     }
@@ -38,14 +39,14 @@ public class Damage : MonoBehaviour
         {
             if (player.transform.position.x > transform.position.x)
             {
-                if (timerP < 1)
+                if (timerP < 2)
                 {
                     player.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 50);
                 }
             }
             else
             {
-                if (timerP < 1)
+                if (timerP < 2)
                 {
                     player.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 50);
                 }
@@ -74,20 +75,20 @@ public class Damage : MonoBehaviour
         else if (col.gameObject.CompareTag("Enemy"))
         {
             impulsoE = true;
-            //if (col.transform.position.x > transform.position.x)
-            //{
-            //    if (timerP < 1)
-            //    {
-            //        col.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 3);
-            //    }
-            //}
-            //else
-            //{
-            //    if (timerP < 1)
-            //    {
-            //        col.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 3);
-            //    }
-            //}
+            if (col.transform.position.x > transform.position.x)
+            {
+                if (timerP < 2)
+                {
+                    col.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 100);
+                }
+            }
+            else
+            {
+                if (timerP < 2)
+                {
+                    col.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 100);
+                }
+            }
         }
     }
 }

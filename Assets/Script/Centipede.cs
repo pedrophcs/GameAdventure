@@ -16,6 +16,7 @@ public class Centipede : MonoBehaviour
     public bool isRight;
     public bool OD;
     public bool isWall;
+    public float timerMorcegos;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +29,20 @@ public class Centipede : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (gatilho.startBoss)
         {
+            speedCen = 1;
+            timerMorcegos += Time.deltaTime;
+            if(timerMorcegos > 8)
+            {
+                speedCen = 1;
+                timerMorcegos = 0;
+            }
+            
             Bat();
             transform.Translate(Vector2.right * speedCen * Time.deltaTime);
             isWall = Physics2D.OverlapCircle(wallCheck.position, 0.02f, groundLayer);
-            //RaycastHit2D wall = Physics2D.Raycast(wallCheck.position, Vector2.down, distance);
+            
             if (isWall)
             {
 
@@ -56,9 +64,10 @@ public class Centipede : MonoBehaviour
     }
     void Bat()
     {
-        if(player.transform.position.x > batD.transform.position.x || player.transform.position.x < batE.transform.position.x || player.transform.position.y > batC.transform.position.y)
+        if(player.transform.position.x > batD.transform.position.x || player.transform.position.x < batE.transform.position.x || player.transform.position.y > batC.transform.position.y && timerMorcegos>=8)
         {
             print("solta morcego");
+            
         }
     }
 }

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Gosma : MonoBehaviour
 {
+    public float timeAtk;
     private float speed;
     public float distance;
     bool isRight = true;
     public float checkRadius = 0.3f;
     public LayerMask playerMask;
-    
+    public bool atkD, atkE;
     public Transform groundCheck;
     private Animator animator;
     public BoxCollider2D Atk;
@@ -27,7 +28,7 @@ public class Gosma : MonoBehaviour
         damage = FindObjectOfType(typeof(Damage)) as Damage;
         animator = GetComponent<Animator>();
         speed = -0.5f;
-        Atk.enabled = false;
+        
     }
     void Update()
     {
@@ -53,15 +54,37 @@ public class Gosma : MonoBehaviour
                 isRight = true;
             }
         }
-
-    }
-    private void FixedUpdate()
-    {
-        if(damage.impulsoE)
+        if (atkD || atkE)
         {
-            rdb.AddForce(Vector2.right * 500);
+            timeAtk += Time.deltaTime;
+            speed = 0;
+            if (timeAtk > 2 && timeAtk < 3)
+            {
+                animator.SetBool("Atk", true);
+                Atk.enabled = true;
+
+            }
+        }
+        else
+        {
+            animator.SetBool("Atk", false);
+            Atk.enabled = false;
+            speed = -0.5f;
+        }
+        if (timeAtk > 3)
+        {
+            atkD = false;
+            atkE = false;
+            timeAtk = 0;
         }
     }
+    //private void FixedUpdate()
+    //{
+    //    if(damage.impulsoE)
+    //    {
+    //        rdb.AddForce(Vector2.right * 500);
+    //    }
+    //}
 
     void Atack()
     {
@@ -70,14 +93,44 @@ public class Gosma : MonoBehaviour
         bool D = Physics2D.OverlapCircle(transform.position + new Vector3(0.5f, 0), checkRadius, playerMask);
         if (D)
         {
+            atkD = true;
+            atkE = false;
             transform.eulerAngles = new Vector3(0, 180, 0);
-            StartCoroutine("CDAtk");
+            //speed = 0;
+            //if (timeAtk > 2 && timeAtk <3)
+            //{
+            //    animator.SetBool("Atk", true);
+            //    Atk.enabled = true;
+                
+            //}
         }
-        else if (E)
+        //else
+        //{
+        //    animator.SetBool("Atk", false);
+        //    Atk.enabled = false;
+        //    speed = -0.5f;
+        //}
+        if (E)
         {
+            atkD = false;
+            atkE = true;
             transform.eulerAngles = new Vector3(0, 0, 0);
-            StartCoroutine("CDAtk");
+            //speed = 0;
+            //if (timeAtk > 2 && timeAtk < 3)
+            //{
+            //    animator.SetBool("Atk", true);
+            //    Atk.enabled = true;
+                
+            //}
+            
+            //StartCoroutine("CDAtk");
         }
+        //else
+        //{
+        //    animator.SetBool("Atk", false);
+        //    Atk.enabled = false;
+        //    speed = -0.5f;
+        //}
 
     }
     private void OnDrawGizmos()
