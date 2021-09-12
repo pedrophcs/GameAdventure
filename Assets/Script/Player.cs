@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [Header("Movement")]
     private float h, v;
     private bool playerMove = true;
-    public float speed, JumpForce;
+    public float speed, JumpForce, currentSpeed;
     private bool OD;
     public bool isJump;
     public float timer;
@@ -143,9 +143,17 @@ public class Player : MonoBehaviour
             StartCoroutine("ColliderStrongAtk");
         }
         //CRIAR ITEM----------------------------------------------------
-        if (Input.GetKeyDown(KeyCode.R))
+        if (isGrounded && Input.GetKeyDown(KeyCode.R))
         {
-            StartCoroutine(Craft());
+            currentSpeed = speed;
+            animator.SetInteger("Move", 4);
+            craft = true;
+            speed = 0;
+        }
+        else if(craft == true)
+        {
+            craft = false;
+           speed = currentSpeed;
         }
     }
 

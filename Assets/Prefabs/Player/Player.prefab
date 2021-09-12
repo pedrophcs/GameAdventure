@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 855044059304797315}
   - component: {fileID: 370556969}
   - component: {fileID: 370556975}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5913472561624284649}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheckPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 6051183293156360329}
   - component: {fileID: 986984328}
   - component: {fileID: 986984330}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ColliderStrongAtk1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 3774279122534280055}
   - component: {fileID: 7417858521874308116}
   - component: {fileID: 320528606}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ColliderStrongAtk2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 8712824489641985453}
   - component: {fileID: 336093786}
   - component: {fileID: 336093788}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ColliderAtk
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2134703261916383784}
   - component: {fileID: 2243407225732534406}
   - component: {fileID: -3748022350913177262}
+  - component: {fileID: -2270252925477174303}
   m_Layer: 0
   m_Name: Bullet2
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3654978412083583438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.44, y: -2.31, z: -1}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: -5, y: -5, z: -1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -136,3 +137,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiro: {fileID: 3654978412083583438, guid: 5598e8363386a8847acbd508ffbc2e3b, type: 3}
   isFather: 1
+--- !u!114 &-2270252925477174303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3654978412083583438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708ba691b22fd29499b9a325ba2ec20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerP: 0
+  timerE: 0
+  damage: 1
+  impulsoP: 0
+  impulsoE: 0
+  inimigo: 0

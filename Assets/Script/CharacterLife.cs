@@ -5,19 +5,40 @@ using UnityEngine;
 public class CharacterLife : MonoBehaviour
 {
     private Animator anim;
-    [SerializeField] private float health;
+    public int health;
     //[HideInInspector] public bool isDead = false;
     public bool isDead = false;
     // Start is called before the first frame update
+    private Life Life;
+    private Player Player;
     void Start()
     {
         anim = GetComponent<Animator>();
+        Life = FindObjectOfType(typeof(Life)) as Life;
+        Player = FindObjectOfType(typeof(Player)) as Player;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        LifeLoss();
+        if (Player.craft == true && health < 6)
+        {
+            if (gameObject.tag == "Player")
+            {
+                health++;
+            }
+            
+        }
+    }
+    
+    void LifeLoss()
+    {
+        if(gameObject.tag == "Player")
+        {
+            Life.UpdateLives(health);
+        }
+       
     }
     public void TakeDamage(int damage)
     {
@@ -25,6 +46,7 @@ public class CharacterLife : MonoBehaviour
         {
             anim.SetTrigger("Hurt");
             health -= damage;
+            
             if (health <= 0)
             {
                 anim.SetTrigger("Death");

@@ -14,14 +14,14 @@ public class MovePlat : MonoBehaviour
     Transform originalPosition;
     public Collider2D Solo;
     public bool chestsPlat;
-
+    Vector3 pos;
     [Header("Plataformas que caem")]
     public bool canFall;
     private Rigidbody2D rdb;
 
     void Start()
     {
-        originalPosition.position = transform.position;
+        pos = transform.position;
         rdb = GetComponent<Rigidbody2D>();
         GameObject Obj = GetComponent<GameObject>();
     }
@@ -103,7 +103,7 @@ public class MovePlat : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         rdb.constraints = RigidbodyConstraints2D.None;
         yield return new WaitForSeconds(5);
-        transform.position = originalPosition.position;
+        transform.position = pos;
         rdb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
