@@ -11,6 +11,7 @@ public class MovePlat : MonoBehaviour
     [SerializeField]
     private GameObject Obj;
     public Transform A, B, C, D, Destino;
+    Transform originalPosition;
     public Collider2D Solo;
     public bool chestsPlat;
 
@@ -20,6 +21,7 @@ public class MovePlat : MonoBehaviour
 
     void Start()
     {
+        originalPosition.position = transform.position;
         rdb = GetComponent<Rigidbody2D>();
         GameObject Obj = GetComponent<GameObject>();
     }
@@ -31,13 +33,14 @@ public class MovePlat : MonoBehaviour
 
         //}
         Go();
+       
     }
 
     void Go()
     {
         float step = Speed * Time.deltaTime;
         Obj.transform.position = Vector3.MoveTowards(Obj.transform.position, Destino.position, step);
-       if(!chestsPlat)
+        if (!chestsPlat)
         {
             if (Obj.transform.position == Destino.position)
             {
@@ -52,22 +55,22 @@ public class MovePlat : MonoBehaviour
                     rota = 0;
                 }
             }
-        }    
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(canFall && collision.gameObject.tag == "Player")
+        if (canFall && collision.gameObject.tag == "Player")
         {
             StartCoroutine(fallTime());
         }
 
     }
- 
+    
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (chestsPlat && collision.gameObject.tag == "Player")
         {
-            
+
             if (Obj.transform.position == Destino.position)
             {
                 if (rota == 0)
@@ -99,6 +102,9 @@ public class MovePlat : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         rdb.constraints = RigidbodyConstraints2D.None;
+        yield return new WaitForSeconds(5);
+        transform.position = originalPosition.position;
+        rdb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
 }

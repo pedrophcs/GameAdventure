@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 890964234985375665}
   - component: {fileID: 890964234985375630}
   - component: {fileID: 890964234985375664}
+  - component: {fileID: 8084866627178559675}
+  - component: {fileID: 6983081834653263503}
   m_Layer: 0
   m_Name: Afogado
   m_TagString: Untagged
@@ -250,6 +252,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.26000857, y: 0.23192932}
   m_EdgeRadius: 0
+--- !u!114 &8084866627178559675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890964234985375624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708ba691b22fd29499b9a325ba2ec20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerP: 0
+  timerE: 0
+  damage: 0
+  impulsoP: 0
+  impulsoE: 0
+  inimigo: 0
+--- !u!114 &6983081834653263503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890964234985375624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b184c60c7bbd1b4d8e95773f6054a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  isDead: 0
 --- !u!1 &6623209766707452511
 GameObject:
   m_ObjectHideFlags: 0

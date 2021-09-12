@@ -66,6 +66,7 @@ MonoBehaviour:
   colliderAtk: {fileID: 336093786}
   colliderStrongAtk1: {fileID: 986984328}
   colliderStrongAtk2: {fileID: 7417858521874308116}
+  rdb: {fileID: 855044059304797325}
   climbingSpeed: 3
   ladderMask:
     serializedVersion: 2
@@ -192,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  isDead: 0
 --- !u!1 &1230075431721833592
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +294,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708ba691b22fd29499b9a325ba2ec20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerP: 0
+  timerE: 0
   damage: 1
+  impulsoP: 0
+  impulsoE: 0
+  inimigo: 0
 --- !u!1 &3338485931475808910
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +370,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708ba691b22fd29499b9a325ba2ec20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerP: 0
+  timerE: 0
   damage: 2
+  impulsoP: 0
+  impulsoE: 0
+  inimigo: 0
 --- !u!1 &7274101440917847419
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,4 +446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708ba691b22fd29499b9a325ba2ec20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerP: 0
+  timerE: 0
   damage: 1
+  impulsoP: 0
+  impulsoE: 0
+  inimigo: 0

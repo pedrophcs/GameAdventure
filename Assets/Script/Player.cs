@@ -269,44 +269,63 @@ public class Player : MonoBehaviour
         }
     }
 
-        //private void OnCollisionEnter2D(Collision2D col)
-        //{
+    //private void OnCollisionEnter2D(Collision2D col)
+    //{
 
 
-        //    if (col.gameObject.CompareTag("DanoCentopeia"))
-        //    {
+    //    if (col.gameObject.CompareTag("DanoCentopeia"))
+    //    {
 
-        //        rdb.AddForce(new Vector2(2 * 10, 5), ForceMode2D.Impulse);
+    //        rdb.AddForce(new Vector2(2 * 10, 5), ForceMode2D.Impulse);
 
-        //    }
+    //    }
 
 
-        //}
+    //}
+    void OnCollisionEnter2D(Collision2D col)
+    {
 
-        IEnumerator Craft()
+        switch (col.gameObject.tag)
         {
-            craft = true;
-            animator.SetInteger("Move", 4);
-            yield return new WaitForSeconds(2);
-            craft = false;
+            case "PlataformaMovel":
+                transform.parent = col.gameObject.transform;
+                break;
         }
-        IEnumerator ColliderNormalAtk()
-        {
-            colliderAtk.enabled = false;
-            yield return new WaitForSeconds(0.2f);
-            colliderAtk.enabled = true;
-            yield return new WaitForSeconds(0.2f);
-            colliderAtk.enabled = false;
-        }
-        IEnumerator ColliderStrongAtk()
-        {
-            yield return new WaitForSeconds(0.15f);
-            colliderStrongAtk1.enabled = true;
-            yield return new WaitForSeconds(0.3f);
-            colliderStrongAtk2.enabled = true;
-            colliderStrongAtk1.enabled = false;
 
-            yield return new WaitForSeconds(0.3f);
-            colliderStrongAtk2.enabled = false;
+    }
+    void OnCollisionExit2D(Collision2D col)
+    {
+        switch (col.gameObject.tag)
+        {
+            case "PlataformaMovel":
+                transform.parent = null;
+                break;
         }
     }
+    IEnumerator Craft()
+    {
+        craft = true;
+        animator.SetInteger("Move", 4);
+        yield return new WaitForSeconds(2);
+        craft = false;
+    }
+    IEnumerator ColliderNormalAtk()
+    {
+        colliderAtk.enabled = false;
+        yield return new WaitForSeconds(0.2f);
+        colliderAtk.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        colliderAtk.enabled = false;
+    }
+    IEnumerator ColliderStrongAtk()
+    {
+        yield return new WaitForSeconds(0.15f);
+        colliderStrongAtk1.enabled = true;
+        yield return new WaitForSeconds(0.3f);
+        colliderStrongAtk2.enabled = true;
+        colliderStrongAtk1.enabled = false;
+
+        yield return new WaitForSeconds(0.3f);
+        colliderStrongAtk2.enabled = false;
+    }
+}

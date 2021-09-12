@@ -70,7 +70,7 @@ public class Tartoga : MonoBehaviour
 
 
         IdleState();
-        if (bulletSpeedx < 0)
+        if (bulletSpeedx > 0)
         {
             bulletDownB.transform.localScale *= -1;
             bulletDownF.transform.localScale *= -1;
@@ -192,7 +192,7 @@ public class Tartoga : MonoBehaviour
         transform.Rotate(0, 180, 0);
         attackPlayerSpeed *= -1;
         bulletSpeedx *= -1;
-        bulletSpeedy *= -1;
+        //bulletSpeedy *= -1;
 
     }
 

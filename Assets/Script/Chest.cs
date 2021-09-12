@@ -12,13 +12,7 @@ public class Chest : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        
-    }
-
-   
-    void Update()
-    {
-        
+        animator.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,8 +20,7 @@ public class Chest : MonoBehaviour
        
         if(collision.gameObject.tag == "Player" && count==0)
         {
-            animator.SetTrigger("Open");
-
+            animator.enabled = true;
             GameObject tempPrefab = Instantiate(item) ;
             tempPrefab.transform.position = spawn.position;
             tempPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 75));

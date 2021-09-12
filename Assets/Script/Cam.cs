@@ -13,12 +13,13 @@ public class Cam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType(typeof(Player)) as Player;
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        player = FindObjectOfType(typeof(Player)) as Player;
         float playerPositionY = player.transform.position.y;
         float playerPositionX = player.transform.position.x;
         if(playerPositionX > E.transform.position.x && playerPositionX < D.transform.position.x)

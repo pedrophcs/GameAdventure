@@ -106,6 +106,8 @@ GameObject:
   - component: {fileID: 7271905677795003571}
   - component: {fileID: 300197039}
   - component: {fileID: 1701143555}
+  - component: {fileID: 860588034700638673}
+  - component: {fileID: -8751057227432481819}
   m_Layer: 8
   m_Name: Tartoga
   m_TagString: Untagged
@@ -347,6 +349,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.12933032, y: 0.25510567}
   m_EdgeRadius: 0
+--- !u!114 &860588034700638673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7271905677795003573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b184c60c7bbd1b4d8e95773f6054a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 40
+  isDead: 0
+--- !u!114 &-8751057227432481819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7271905677795003573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708ba691b22fd29499b9a325ba2ec20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerP: 0
+  timerE: 0
+  damage: 0
+  impulsoP: 0
+  impulsoE: 0
+  inimigo: 0
 --- !u!1 &7271905678593529604
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4189308100873852214}
   - component: {fileID: 4189308100873852209}
   - component: {fileID: 4189308100873852208}
+  - component: {fileID: 2025856415}
   - component: {fileID: 4189308100873852211}
   - component: {fileID: 4189308100873852213}
-  - component: {fileID: 2025856415}
   m_Layer: 0
   m_Name: Tartaruga
   m_TagString: Enemy
@@ -159,6 +159,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 4
   isDead: 0
+--- !u!114 &2025856415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189308100873852219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7859ee720dec4446911b446a271910b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rdbenemy: {fileID: 0}
 --- !u!70 &4189308100873852211
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -201,19 +214,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22405459, y: 0.027372286}
   m_EdgeRadius: 0
---- !u!114 &2025856415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4189308100873852219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7859ee720dec4446911b446a271910b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rdbenemy: {fileID: 0}
 --- !u!1 &4189308101564435109
 GameObject:
   m_ObjectHideFlags: 0
