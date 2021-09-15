@@ -49,6 +49,7 @@ public class Tartaruga : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            AudioController.instance.PlaySounds(Sound.jumpTur);
             speedMain = speed;
             if (player.timer >= 0.6f)
             {

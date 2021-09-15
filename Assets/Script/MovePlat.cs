@@ -6,7 +6,7 @@ public class MovePlat : MonoBehaviour
 {
 
     [Header("Plataformas que se movem")]
-    private float Speed = 1;
+    public float Speed = 1;
     private int rota;
     [SerializeField]
     private GameObject Obj;

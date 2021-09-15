@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1836320972}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4923388738514295054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BackShot
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8572782064007215798}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FrontShot
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 1701143555}
   - component: {fileID: 860588034700638673}
   - component: {fileID: -8751057227432481819}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Tartoga
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,14 +279,19 @@ MonoBehaviour:
   attackPlayerSpeed: 25
   player: {fileID: 0}
   attackCheck: {fileID: 1836320972}
+  attackRangedCheck: {fileID: 0}
   groundCheckDown: {fileID: 7271905678593529605}
   groundCheckWall: {fileID: 1836320972}
   groundCheckRadious: 0.27
-  attackRange: {x: 0.84, y: 0.8, z: 0}
+  rangedAttackRadious: 0
+  attackMelee: {x: 0, y: 0, z: 0}
+  attackRanged: {x: 0, y: 0, z: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
   isWalking: 0
+  isMelee: 0
+  isRanged: 0
   bulletDownB: {fileID: 3600532429013236982, guid: 5b75782b5b0527e48811aea6f496959c, type: 3}
   bulletDownF: {fileID: 3654978412083583438, guid: a56b6525ff263634b88a0f3e86e7ba1e, type: 3}
   bulletUpF: {fileID: 1523793814115094421, guid: 0142b94c64fe3f641a5567f349918cf3, type: 3}
@@ -297,6 +302,7 @@ MonoBehaviour:
   bulletSpeedx: -1000
   bulletSpeedy: 500
   timer: 0
+  isAlive: 0
 --- !u!61 &300197039
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -363,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 40
   isDead: 0
+  boss: 0
 --- !u!114 &-8751057227432481819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7271905678593529605}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}

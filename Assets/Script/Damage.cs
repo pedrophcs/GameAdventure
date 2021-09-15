@@ -52,12 +52,6 @@ public class Damage : MonoBehaviour
                 }
             }
         }
-        //if(impulsoE)
-        //{
-
-        //    enemy.rdbenemy.GetComponent<Rigidbody2D>()
-            
-        //}
 
     }
     private void OnTriggerEnter2D(Collider2D col)
@@ -71,9 +65,11 @@ public class Damage : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             impulsoP = true;
+            AudioController.instance.PlaySounds(Sound.playerDa);
         }
         else if (col.gameObject.CompareTag("Enemy"))
         {
+            AudioController.instance.PlaySounds(Sound.mobD);
             impulsoE = true;
             if (col.transform.position.x > transform.position.x)
             {

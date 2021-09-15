@@ -20,15 +20,19 @@ public class Tartoga : MonoBehaviour
 
     [Header("Other")]
     [SerializeField] Transform attackCheck;
+    [SerializeField] Transform attackRangedCheck;
     [SerializeField] Transform groundCheckDown;
     [SerializeField] Transform groundCheckWall;
 
     [SerializeField] float groundCheckRadious;
-    [SerializeField] Vector3 attackRange;
+    [SerializeField] float rangedAttackRadious;
+    [SerializeField] Vector3 attackMelee;
+    [SerializeField] Vector3 attackRanged;
     [SerializeField] LayerMask playerLayer;
 
-    [SerializeField] private bool isWalking;
-    private bool isMelee;
+    [SerializeField] private bool isWalking = true;
+    [SerializeField] private bool isMelee, isRanged;
+
     private bool goingUp = true;
     private bool OD = true;
     private bool canAttack = true;
@@ -46,56 +50,78 @@ public class Tartoga : MonoBehaviour
     [SerializeField] float bulletSpeedx;
     [SerializeField] float bulletSpeedy;
     [SerializeField] float timer;
+    public bool isAlive;
+    private Gatilho gatilho;
     private void Start()
     {
+        isAlive = true;
         idleMoveDirection.Normalize();
         attackMoveDirection.Normalize();
         enemyRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        gatilho = FindObjectOfType(typeof(Gatilho)) as Gatilho;
     }
     private void Update()
     {
-        timer += 1 * Time.deltaTime;
-        if (idleMoveSpeed > 0 || idleMoveSpeed < 0)
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
 
-        }
-
-        isMelee = Physics2D.OverlapCircle(attackCheck.position, groundCheckRadious, playerLayer);
-
-
-        IdleState();
-        if (bulletSpeedx > 0)
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+       
+            
+        
+        if (gatilho.startBoss)
         {
-            bulletDownB.transform.localScale *= -1;
-            bulletDownF.transform.localScale *= -1;
-            bulletUpB.transform.localScale *= -1;
-            bulletUpF.transform.localScale *= -1;
+           
+            AudioController.instance.sing.enabled = false;
+            AudioController.instance.boss.enabled = true;
+
+            isMelee = Physics2D.OverlapCircle(attackCheck.position, groundCheckRadious, playerLayer);
+            isRanged = Physics2D.OverlapCircle(attackRangedCheck.position, rangedAttackRadious, playerLayer);
+
+
+            IdleState();
+            if (bulletSpeedx > 0)
+            {
+                bulletDownB.transform.localScale *= -1;
+                bulletDownF.transform.localScale *= -1;
+                bulletUpB.transform.localScale *= -1;
+                bulletUpF.transform.localScale *= -1;
+            }
+            else
+            {
+                bulletDownB.transform.localScale *= -1;
+                bulletDownF.transform.localScale *= -1;
+                bulletUpB.transform.localScale *= -1;
+                bulletUpF.transform.localScale *= -1;
+            }
+            if(idleMoveSpeed > 0 || idleMoveSpeed < 0)
+            {
+                isWalking = true;
+            }
         }
-        else
-        {
-            bulletDownB.transform.localScale *= -1;
-            bulletDownF.transform.localScale *= -1;
-            bulletUpB.transform.localScale *= -1;
-            bulletUpF.transform.localScale *= -1;
-        }
+       
+
+
+
     }
     void IdleState()
     {
         if (isMelee)
         {
-            isMelee = false;
+
             StartCoroutine(MeleeAttack());
+            isMelee = false;
+        }
+        if (isRanged)
+        {
+
+            ShootDown();
+
         }
         if (isWalking == true)
         {
             animator.SetInteger("Move", 1);
         }
+
         if (GameObject.FindGameObjectWithTag("Player").transform.position.x > transform.position.x)
         {
             if (OD)
@@ -126,16 +152,17 @@ public class Tartoga : MonoBehaviour
     void ShootDown()
     {
         timer += Time.deltaTime;
-        if (timer >= 2 && canAttack == true)
+        if (timer >= 2 && isRanged)
         {
-            canAttack = false;
+            isWalking = false;
+            isRanged = false;
             StartCoroutine(Shoot());
             timer = 0;
         }
         if (timer >= 8)
         {
             timer = 0;
-            canAttack = true;
+            isRanged = true;
         }
     }
     IEnumerator Shoot()
@@ -157,6 +184,7 @@ public class Tartoga : MonoBehaviour
             FS.GetComponent<Rigidbody2D>().AddForce(new Vector2(bulletSpeedx, 0));
 
             yield return new WaitForSeconds(1);
+            isWalking = true;
             idleMoveSpeed = holdSpeed;
         }
         else
@@ -178,6 +206,7 @@ public class Tartoga : MonoBehaviour
             FS.GetComponent<Rigidbody2D>().AddForce(new Vector2(bulletSpeedx, bulletSpeedy));
 
             yield return new WaitForSeconds(1);
+            isWalking = true;
             idleMoveSpeed = holdSpeed;
         }
 
@@ -192,32 +221,18 @@ public class Tartoga : MonoBehaviour
         transform.Rotate(0, 180, 0);
         attackPlayerSpeed *= -1;
         bulletSpeedx *= -1;
-        //bulletSpeedy *= -1;
-
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(attackCheck.position, attackRange);
+        Gizmos.DrawWireCube(attackCheck.position, attackMelee);
+        Gizmos.DrawWireSphere(attackRangedCheck.position, rangedAttackRadious);
         Gizmos.DrawWireSphere(groundCheckWall.position, groundCheckRadious);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            ShootDown();
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            canAttack = true;
-        }
 
     }
+
+
 
 
 

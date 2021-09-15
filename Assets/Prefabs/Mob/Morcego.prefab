@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1637468711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Check
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 4624375708623010240}
   - component: {fileID: 2164804727520224724}
   - component: {fileID: -1487637625351016180}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Morcego
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,19 +167,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   playerCheckRadious: 1
+  target: {fileID: 0}
   playerCheck: {fileID: 1637468711}
-  Obj: {fileID: 4624375708623010303}
-  rota: 0
-  A: {fileID: 0}
-  B: {fileID: 0}
-  Destino: {fileID: 0}
   groundCheckRadious: 4.77
   attackCheck: {fileID: 1637468711}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackRange: {x: 0, y: 0}
-  size: {x: 2.01, y: 0.48, z: 0}
 --- !u!114 &2164804727520224724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,3 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   isDead: 0
+  isAlive: 0
+  boss: 0
+  cent: 0
+  tart: 0

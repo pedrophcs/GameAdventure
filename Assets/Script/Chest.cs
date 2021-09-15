@@ -20,10 +20,11 @@ public class Chest : MonoBehaviour
        
         if(collision.gameObject.tag == "Player" && count==0)
         {
+            AudioController.instance.PlaySounds(Sound.chest);
             animator.enabled = true;
             GameObject tempPrefab = Instantiate(item) ;
             tempPrefab.transform.position = spawn.position;
-            tempPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 75));
+            tempPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 150));
             count ++;
         }
     }

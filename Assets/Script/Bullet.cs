@@ -29,11 +29,14 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Player" || collision.tag == "Ground")
         {
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
+                int randX = Random.Range(-500, 500);
+                int randY = Random.Range(-500, 500);
                 GameObject preFab = Instantiate(tiro);
+                preFab.GetComponent<Rigidbody2D>().AddForce(new Vector2(randX, randY));
                 preFab.transform.position = transform.position;
-               
+
             }
             Destroy(this.gameObject);
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class Player : MonoBehaviour
     public bool climbing;
     public float checkRadius = 0.3f;
 
+    public Text runes;
+    public int runesQtd = 0,runeSpeed = 500;
+    public GameObject runeAtk;
+    public Transform runeSpawn;
     void Start()
     {
         //rdb = GetComponent<Rigidbody2D>();
@@ -47,6 +52,7 @@ public class Player : MonoBehaviour
         colliderAtk.enabled = false;
         colliderStrongAtk1.enabled = false;
         colliderStrongAtk2.enabled = false;
+       // runes.text = GameObject.FindGameObjectWithTag("runeText");
     }
 
 
@@ -64,6 +70,8 @@ public class Player : MonoBehaviour
         v = Input.GetAxis("Vertical");
         PlayerMoves();
         ClimbLadder();
+        runes.text = runesQtd.ToString();
+       
     }
 
     private void PlayerMoves()
@@ -155,6 +163,11 @@ public class Player : MonoBehaviour
             craft = false;
            speed = currentSpeed;
         }
+        //JOGA RUNAS
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            ThrowRunes();
+        }
     }
 
     void Flip()
@@ -163,14 +176,17 @@ public class Player : MonoBehaviour
         Vector3 v3 = transform.localScale;
         v3.x *= -1;
         transform.localScale = v3;
+        runeSpeed *= -1;
     }
     public void StrongAtk()
     {
         animator.SetTrigger("StrongAtk");
+        AudioController.instance.PlaySounds(Sound.at2);
     }
     public void NormalAtk()
     {
         animator.SetTrigger("NormalAtk");
+        AudioController.instance.PlaySounds(Sound.at1);
     }
     bool TouchingLadder()
     {
@@ -252,10 +268,18 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, checkRadius);
         Gizmos.DrawWireSphere(transform.position + new Vector3(0, -1), checkRadius);
     }
+    void ThrowRunes()
+    {
+        if(runesQtd > 0)
+        {
+            GameObject prefab = Instantiate(runeAtk);
+            prefab.transform.position = runeSpawn.position;
+            prefab.GetComponent<Rigidbody2D>().AddForce(new Vector2(runeSpeed, 100));
+            runesQtd--;
+        }
+    }
     private void FixedUpdate()
     {
-
-
         if (danoCentopeia.acertou)
         {
 
@@ -276,20 +300,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    //private void OnCollisionEnter2D(Collision2D col)
-    //{
-
-
-    //    if (col.gameObject.CompareTag("DanoCentopeia"))
-    //    {
-
-    //        rdb.AddForce(new Vector2(2 * 10, 5), ForceMode2D.Impulse);
-
-    //    }
-
-
-    //}
     void OnCollisionEnter2D(Collision2D col)
     {
 
